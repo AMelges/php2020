@@ -81,6 +81,9 @@
     "egulias/email-validator": {
         "version": "2.1.18"
     },
+    "escapestudios/symfony2-coding-standard": {
+        "version": "3.11.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
