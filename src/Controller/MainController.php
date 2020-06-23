@@ -1,6 +1,6 @@
 <?php
 /**
- * Index controller.
+ * Main controller.
  */
 
 namespace App\Controller;
@@ -11,11 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * Class IndexController.
+ * Class MainController.
  *
- * @Route("/index")
+ * @Route("/main")
  */
-class IndexController extends AbstractController
+class MainController extends AbstractController
 {
     /**
      * Index action.
@@ -27,7 +27,7 @@ class IndexController extends AbstractController
      * @Route(
      *     "/{name}",
      *     methods={"GET"},
-     *     name="index",
+     *     name="main_index",
      *     defaults={"name":"World"},
      *     requirements={"name": "[a-zA-Z]+"},
      * )
@@ -35,7 +35,7 @@ class IndexController extends AbstractController
     public function index(string $name): Response
     {
         return $this->render(
-            'index/index.html.twig',
+            'main/index.html.twig',
             ['name' => $name]
         );
     }
