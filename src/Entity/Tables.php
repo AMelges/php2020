@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Tables
- *
+ * @ORM\Entity(repositoryClass="App\Repository\TablesRepository")
  * @ORM\Table(name="tables", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})}, indexes={@ORM\Index(name="fk_tables_inns1_idx", columns={"innID"})})
- * @ORM\Entity
  */
 class Tables
 {
@@ -44,6 +43,47 @@ class Tables
      * })
      */
     private $innid;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCapacity(): ?int
+    {
+        return $this->capacity;
+    }
+
+    public function setCapacity(int $capacity): self
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getTopic(): ?string
+    {
+        return $this->topic;
+    }
+
+    public function setTopic(?string $topic): self
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    public function getInnid(): ?Inns
+    {
+        return $this->innid;
+    }
+
+    public function setInnid(?Inns $innid): self
+    {
+        $this->innid = $innid;
+
+        return $this;
+    }
 
 
 }

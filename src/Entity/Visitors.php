@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Visitors
- *
+ * @ORM\Entity(repositoryClass="App\Repository\VisitorsRepository")
  * @ORM\Table(name="visitors", indexes={@ORM\Index(name="fk_visitors_tables1_idx", columns={"tableID"}), @ORM\Index(name="fk_visitors_users1_idx", columns={"userID"}), @ORM\Index(name="IDX_7B74A43F9BBAF5FE", columns={"innID"})})
- * @ORM\Entity
  */
 class Visitors
 {
@@ -45,6 +44,42 @@ class Visitors
      * })
      */
     private $userid;
+
+    public function getInnid(): ?Inns
+    {
+        return $this->innid;
+    }
+
+    public function setInnid(?Inns $innid): self
+    {
+        $this->innid = $innid;
+
+        return $this;
+    }
+
+    public function getTableid(): ?Tables
+    {
+        return $this->tableid;
+    }
+
+    public function setTableid(?Tables $tableid): self
+    {
+        $this->tableid = $tableid;
+
+        return $this;
+    }
+
+    public function getUserid(): ?Usersdata
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(?Usersdata $userid): self
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
 
 
 }

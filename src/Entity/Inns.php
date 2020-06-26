@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Inns
- *
+ * @ORM\Entity(repositoryClass="App\Repository\InnsRepository")
  * @ORM\Table(name="inns", uniqueConstraints={@ORM\UniqueConstraint(name="innkeeperID_UNIQUE", columns={"innkeeperID"}), @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"})}, indexes={@ORM\Index(name="fk_inns_users1_idx", columns={"innkeeperID"}), @ORM\Index(name="fk_inns_realms1_idx", columns={"realmID"})})
- * @ORM\Entity
  */
 class Inns
 {
@@ -61,6 +60,71 @@ class Inns
      * })
      */
     private $innkeeperid;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getSignboardurl(): ?string
+    {
+        return $this->signboardurl;
+    }
+
+    public function setSignboardurl(?string $signboardurl): self
+    {
+        $this->signboardurl = $signboardurl;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCapacity(): ?int
+    {
+        return $this->capacity;
+    }
+
+    public function setCapacity(int $capacity): self
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getRealmid(): ?Realms
+    {
+        return $this->realmid;
+    }
+
+    public function setRealmid(?Realms $realmid): self
+    {
+        $this->realmid = $realmid;
+
+        return $this;
+    }
+
+    public function getInnkeeperid(): ?Usersdata
+    {
+        return $this->innkeeperid;
+    }
+
+    public function setInnkeeperid(?Usersdata $innkeeperid): self
+    {
+        $this->innkeeperid = $innkeeperid;
+
+        return $this;
+    }
 
 
 }
