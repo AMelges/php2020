@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Usersdata;
+use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Usersdata|null find($id, $lockMode = null, $lockVersion = null)
- * @method Usersdata|null findOneBy(array $criteria, array $orderBy = null)
- * @method Usersdata[]    findAll()
- * @method Usersdata[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Users|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Users|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Users[]    findAll()
+ * @method Users[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UsersdataRepository extends ServiceEntityRepository
+class UsersRepository extends ServiceEntityRepository
 {
     /**
      * UsersdataRepository constructor.
-     * @param ManagerRegistry $registry
+     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Usersdata::class);
+        parent::__construct($registry, Users::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class UsersdataRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('userdata.ID', 'DESC');
+            ->orderBy('user.ID', 'DESC');
     }
 
     /**
@@ -50,14 +50,14 @@ class UsersdataRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param \App\Entity\Usersdata $usersdata Usersdata entity
+     * @param \App\Entity\Users $users Users entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(Usersdata $usersdata): void
+    public function save(Users $users): void
     {
-        $this->_em->persist($usersdata);
-        $this->_em->flush($usersdata);
+        $this->_em->persist($users);
+        $this->_em->flush($users);
     }
 }

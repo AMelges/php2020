@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Hello {{ name }}!
+    Hello!
 {% endblock %}
 
 {% block body %}
     <p>
-        Hello {{ name }}!
+        Welcome! Are You just a guest passing by, or You'd like to join the Realm?
     </p>
+    <form action="/register" method="get">
+        <input type="submit" value="I want to join!"/>
+    </form>
+    <form action="/guest" method="get">
+        <input type="submit" value="I'm just passing by."/>
+    </form>
 {% endblock %}
