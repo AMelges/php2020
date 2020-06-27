@@ -16,6 +16,15 @@
         </div>
     {% endif %}
 
+    {% for message in parsedMessages %}
+        <div>
+            <p>{{ message.username}}</p>
+
+            <p>{{message.content}}</p>
+        </div>
+    {% endfor %}
+
+
     <h1>Send message:</h1>
     {{ form_start(form, { method: 'POST', action: url('user_index') }) }}
     {{ form_widget(form) }}

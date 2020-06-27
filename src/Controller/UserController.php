@@ -57,17 +57,33 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message->setSenderid($user->getId());
-            $message->setDate( new \DateTime());
+            $message->setUsername($user->getId().'_'.$user->getUsername());
+            $message->setDate(new \DateTime());
             $messageRepository->save($message);
 
             return $this->redirectToRoute('user_index');
         }
 
+        $lastMessages = $messageRepository->findBy([], ['date' => 'DESC'], UserController::LAST_MESSAGES_COUNT);
+        $parsedMessages = [];
+        for ($i = UserController::LAST_MESSAGES_COUNT-1; $i >= 0 ; $i--)
+        {
+            array_push(
+                $parsedMessages,
+                [
+                    'username'=> $lastMessages[$i]->getUsername(),
+                    'dateTime' =>  $lastMessages[$i]->getDate(),
+                    'content' =>  $lastMessages[$i]->getContent()
+                ]);
+        }
+
         // TODO: add displaying 5 last messages.
         return $this->render(
             'user/index.html.twig',
-            ['form' => $form->createView()]
+            [
+                'form' => $form->createView(),
+                'parsedMessages' => $parsedMessages
+            ]
         );
     }
 }

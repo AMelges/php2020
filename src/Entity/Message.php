@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})}, indexes={@ORM\Index(name="fk_messages_tables1_idx", columns={"tableID"}), @ORM\Index(name="fk_messages_users1_idx", columns={"senderID"})})
+ * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})})
+ *
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
 class Message
@@ -17,7 +18,7 @@ class Message
      *
      * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -36,30 +37,22 @@ class Message
     private $content;
 
     /**
-     * @var \Table
+     * @var string|null
      *
-     * @ORM\ManyToOne(targetEntity="Table")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tableID", referencedColumnName="ID")
-     * })
+     * @ORM\Column(name="username", type="text", length=255, nullable=true)
      */
-    private $tableid;
-
-    /**
-     * @var \UserData
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="UserData")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="senderID", referencedColumnName="ID")
-     * })
-     */
-    private $senderid;
+    private $username;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -86,29 +79,15 @@ class Message
         return $this;
     }
 
-    public function getTableid(): ?Table
+    public function getUsername():  ?string
     {
-        return $this->tableid;
+        return $this->username;
     }
 
-    public function setTableid(?Table $tableid): self
+    public function setUsername(?string $username): self
     {
-        $this->tableid = $tableid;
+        $this->username = $username;
 
         return $this;
     }
-
-    public function getSenderid(): ?UserData
-    {
-        return $this->senderid;
-    }
-
-    public function setSenderid(?UserData $senderid): self
-    {
-        $this->senderid = $senderid;
-
-        return $this;
-    }
-
-
 }
