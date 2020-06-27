@@ -1,4 +1,9 @@
-p
-{
-    color: red;
+div.messageBoxTypeA {
+    background-color: #ffffcc;
+    opacity: 0.3;
+}
+
+div.messageBoxTypeB {
+    background-color: #ccffcc;
+    opacity: 0.3;
 }

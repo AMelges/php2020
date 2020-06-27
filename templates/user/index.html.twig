@@ -6,7 +6,7 @@
 
 {% block body %}
     <p>
-        Welcome! You've managed to register, and that's Your panel!
+        Welcome in the global chatroom!
     </p>
 
     {% if app.user %}
@@ -18,13 +18,13 @@
     <div class="form-group col float-sm-left">
     {% for message in parsedMessages %}
         {% if message.currentUser %}
-            <div class="form-group row ">
-                <p>{{message.content}}</p>
+            <div class="form-group row messageBoxTypeB ">
                 <p>{{ message.username}}</p>
                 <p>{{message.dateTime}}</p>
+                <p>{{message.content}}</p>
             </div>
         {% else %}
-            <div class="form-group row ">
+            <div class="form-group row messageBoxTypeA">
                 <p>{{message.dateTime}}</p>
                 <p>{{ message.username}}</p>
                 <p>{{message.content}}</p>
@@ -33,14 +33,14 @@
 
     {% endfor %}
     </div>
-
-    <h1>Send message:</h1>
-    {{ form_start(form, { method: 'POST', action: url('user_index') }) }}
-    {{ form_widget(form) }}
-
+<div>
+    <div>
+        {{ form_start(form, { method: 'POST', action: url('user_index') }) }}
+        {{ form_widget(form) }}
+    </div>
     <div class="form-group row float-sm-left">
         <input type="submit" value="Send" class="btn btn-primary" />
     </div>
-
+</div>
     {{ form_end(form) }}
 {% endblock %}

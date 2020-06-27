@@ -77,7 +77,7 @@ class UserController extends AbstractController
                     'currentUser' => $currentUserCombinedId === $lastMessages[$i]->getUsername(),
                 ]);
         }
-        
+
         return $this->render(
             'user/index.html.twig',
             [
