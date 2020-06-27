@@ -47,11 +47,12 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $user->setRoles([User::ROLE_STANDARD]);
-            $user->setPassword(
-                $userRepository->passwordEncoder->encodePassword(
-                   $user,
-                   $user->getPassword()
-                )
+            // TODO: UJ Database is unable to accept bigger passwords.
+            $user->setPassword("123"
+                //$userRepository->passwordEncoder->encodePassword(
+                //   $user,
+                //   $user->getPassword()
+                //)
             );
             $userRepository->save($user);
 
