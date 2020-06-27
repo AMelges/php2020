@@ -15,15 +15,24 @@
             <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-
+    <div class="form-group col float-sm-left">
     {% for message in parsedMessages %}
-        <div>
-            <p>{{ message.username}}</p>
+        {% if message.currentUser %}
+            <div class="form-group row ">
+                <p>{{message.content}}</p>
+                <p>{{ message.username}}</p>
+                <p>{{message.dateTime}}</p>
+            </div>
+        {% else %}
+            <div class="form-group row ">
+                <p>{{message.dateTime}}</p>
+                <p>{{ message.username}}</p>
+                <p>{{message.content}}</p>
+            </div>
+        {% endif %}
 
-            <p>{{message.content}}</p>
-        </div>
     {% endfor %}
-
+    </div>
 
     <h1>Send message:</h1>
     {{ form_start(form, { method: 'POST', action: url('user_index') }) }}

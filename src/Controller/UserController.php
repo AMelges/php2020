@@ -32,10 +32,10 @@ class UserController extends AbstractController
     /**
      * Index action.
      *
-     * @param string $name User input
-     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @Route(
      *     "/",
      *     methods={"GET", "POST"},
@@ -52,12 +52,13 @@ class UserController extends AbstractController
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
+        $currentUserCombinedId =  $user->getId().'_'.$user->getUsername();
         $message = new Message();
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message->setUsername($user->getId().'_'.$user->getUsername());
+            $message->setUsername($currentUserCombinedId);
             $message->setDate(new \DateTime());
             $messageRepository->save($message);
 
@@ -66,23 +67,22 @@ class UserController extends AbstractController
 
         $lastMessages = $messageRepository->findBy([], ['date' => 'DESC'], UserController::LAST_MESSAGES_COUNT);
         $parsedMessages = [];
-        for ($i = UserController::LAST_MESSAGES_COUNT-1; $i >= 0 ; $i--)
-        {
+        for ($i = UserController::LAST_MESSAGES_COUNT - 1; $i >= 0; --$i) {
             array_push(
                 $parsedMessages,
                 [
-                    'username'=> $lastMessages[$i]->getUsername(),
-                    'dateTime' =>  $lastMessages[$i]->getDate(),
-                    'content' =>  $lastMessages[$i]->getContent()
+                    'username' => $lastMessages[$i]->getUsername(),
+                    'dateTime' => $lastMessages[$i]->getDate()->format('d/m/Y'),
+                    'content' => $lastMessages[$i]->getContent(),
+                    'currentUser' => $currentUserCombinedId === $lastMessages[$i]->getUsername(),
                 ]);
         }
-
-        // TODO: add displaying 5 last messages.
+        
         return $this->render(
             'user/index.html.twig',
             [
                 'form' => $form->createView(),
-                'parsedMessages' => $parsedMessages
+                'parsedMessages' => $parsedMessages,
             ]
         );
     }
