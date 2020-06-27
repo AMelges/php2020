@@ -8,4 +8,21 @@
     <p>
         Welcome! You've managed to register, and that's Your panel!
     </p>
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }},
+            <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1>Send message:</h1>
+    {{ form_start(form, { method: 'POST', action: url('user_index') }) }}
+    {{ form_widget(form) }}
+
+    <div class="form-group row float-sm-left">
+        <input type="submit" value="Send" class="btn btn-primary" />
+    </div>
+
+    {{ form_end(form) }}
 {% endblock %}

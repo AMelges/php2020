@@ -49,8 +49,8 @@ class RegisterController extends AbstractController
             $user->setRoles([User::ROLE_STANDARD]);
             $user->setPassword(
                 $userRepository->passwordEncoder->encodePassword(
-                    $user,
-                    $user->getPassword()
+                   $user,
+                   $user->getPassword()
                 )
             );
             $userRepository->save($user);

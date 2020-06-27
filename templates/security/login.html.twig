@@ -22,8 +22,14 @@
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-lg btn-primary float-sm-right" type="submit">
         Sign in
     </button>
+
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('main_index') }}" class="btn btn-lg btn-primary">
+            Back
+        </a>
+    </div>
 </form>
 {% endblock %}

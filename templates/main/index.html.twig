@@ -8,7 +8,15 @@
     <p>
         Welcome! If You want to join the chat, please register.
     </p>
-    <form action="/register" method="get">
-        <input type="submit" value="I want to join!"/>
-    </form>
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('register_form') }}" class="btn btn-lg btn-primary">
+            I want to register!
+        </a>
+    </div>
+    <div class="form-group row float-sm-right">
+        <a href="{{ url('app_login') }}" class="btn btn-lg btn-primary">
+            I want to login!
+        </a>
+    </div>
+
 {% endblock %}
