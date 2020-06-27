@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="info_hello_world">
+                <source>info_hello_world</source>
+                <target>Witaj! Proszę zarejestruj się, albo zaloguj.</target>
+            </trans-unit>
+            <trans-unit id="action_open_register_panel">
+                <source>action_open_register_panel</source>
+                <target>Zarejestruj</target>
+            </trans-unit>
+            <trans-unit id="action_open_login_panel">
+                <source>action_open_login_panel</source>
+                <target>Zaloguj</target>
+            </trans-unit>
+            <trans-unit id="info_register_form_title">
+                <source>info_register_form_title</source>
+                <target>Formularz rejestracji: </target>
+            </trans-unit>
+            <trans-unit id="action_back">
+                <source>action_back</source>
+                <target>Cofnij</target>
+            </trans-unit>
+            <trans-unit id="action_send">
+                <source>action_send</source>
+                <target>Wyślij</target>
+            </trans-unit>
+            <trans-unit id="info_log_in_form_title">
+                <source>info_log_in_form_title</source>
+                <target>Formularz logowania: </target>
+            </trans-unit>
+            <trans-unit id="info_you_are_logged_as">
+                <source>info_you_are_logged_as</source>
+                <target>Jesteś zalogowany jako: </target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="info_please_sign_in">
+                <source>info_please_sign_in</source>
+                <target>Proszę, zaloguj się.</target>
+            </trans-unit>
+            <trans-unit id="field_email">
+                <source>field_email</source>
+                <target>Email: </target>
+            </trans-unit>
+            <trans-unit id="field_password">
+                <source>field_password</source>
+                <target>Hasło: </target>
+            </trans-unit>
+            <trans-unit id="action_sign_in">
+                <source>action_sign_in</source>
+                <target>Zarejestruj</target>
+            </trans-unit>
+            <trans-unit id="info_welcome_to_the_global_chatroom">
+                <source>info_welcome_to_the_global_chatroom</source>
+                <target>Witaj w pokoju czatu globalnego!</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
