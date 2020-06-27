@@ -6,27 +6,27 @@
 
 {% block body %}
     <p>
-        Welcome in the global chatroom!
+        {{ 'info_welcome_to_the_global_chatroom'| trans }}
     </p>
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }},
-            <a href="{{ path('app_logout') }}">Logout</a>
+            {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }},
+            <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
         </div>
     {% endif %}
     <div class="form-group col float-sm-left">
     {% for message in parsedMessages %}
         {% if message.currentUser %}
             <div class="form-group row messageBoxTypeB ">
-                <p>{{ message.username}}</p>
+                <p>{{message.username}}</p>
                 <p>{{message.dateTime}}</p>
                 <p>{{message.content}}</p>
             </div>
         {% else %}
             <div class="form-group row messageBoxTypeA">
                 <p>{{message.dateTime}}</p>
-                <p>{{ message.username}}</p>
+                <p>{{message.username}}</p>
                 <p>{{message.content}}</p>
             </div>
         {% endif %}
@@ -39,7 +39,7 @@
         {{ form_widget(form) }}
     </div>
     <div class="form-group row float-sm-left">
-        <input type="submit" value="Send" class="btn btn-primary" />
+        <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary" />
     </div>
 </div>
     {{ form_end(form) }}

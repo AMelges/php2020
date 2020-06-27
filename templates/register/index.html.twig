@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Register:</h1>
+    <h1>{{ 'info_register_form_title'| trans }}</h1>
     {{ form_start(form, { method: 'POST', action: url('register_form') }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-left">
         <a href="{{ url('main_index') }}" class="btn btn-lg btn-primary">
-            Back
+            {{ 'action_back'| trans }}
         </a>
     </div>
 
     <div class="form-group row float-sm-right">
-        <input type="submit" value="Send" class="btn btn-primary" />
+        <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary" />
     </div>
 
     {{ form_end(form) }}

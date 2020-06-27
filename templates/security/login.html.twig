@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'info_log_in_form_title'| trans }}{% endblock %}
 
 {% block body %}
 <form method="post">
@@ -10,25 +10,25 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'info_please_sign_in'| trans }}</h1>
+    <label for="inputEmail">{{ 'field_email'| trans }}</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">{{ 'field_password'| trans }}</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     <button class="btn btn-lg btn-primary float-sm-right" type="submit">
-        Sign in
+        {{ 'action_sign_in'| trans }}
     </button>
 
     <div class="form-group row float-sm-left">
         <a href="{{ url('main_index') }}" class="btn btn-lg btn-primary">
-            Back
+            {{ 'action_back'| trans }}
         </a>
     </div>
 </form>
