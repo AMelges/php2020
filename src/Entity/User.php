@@ -2,8 +2,13 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User.
@@ -12,12 +17,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     name="users",
  *     uniqueConstraints={
  *     @ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"}),
- *     @ORM\UniqueConstraint(name="login_UNIQUE", columns={"login"}),
  *     @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+ *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ *
  * @UniqueEntity(fields={"email"})
  */
-class User
+class User implements UserInterface
 {
     /**
      * Role admin.
@@ -67,6 +73,14 @@ class User
      * @var string|null
      *
      * @ORM\Column(name="login", type="text", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Your login must be at least {{ limit }} characters long",
+     *      maxMessage = "Your login cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $login;
 
@@ -74,6 +88,14 @@ class User
      * @var string|null
      *
      * @ORM\Column(name="password", type="text", length=255, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Your password must be at least {{ limit }} characters long",
+     *      maxMessage = "Your password cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $password;
 
@@ -81,6 +103,11 @@ class User
      * @var string|null
      *
      * @ORM\Column(name="email", type="text", length=255, nullable=true)
+     *
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      */
     private $email;
 

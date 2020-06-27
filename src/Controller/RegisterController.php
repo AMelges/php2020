@@ -38,7 +38,7 @@ class RegisterController extends AbstractController
      *     name="register_form",
      * )
      */
-    public function index(Request $request, UserRepository $usersRepository): Response
+    public function index(Request $request, UserRepository $userRepository): Response
     {
         $user = new User();
         $form = $this->createForm(UsersType::class, $user);
@@ -46,10 +46,16 @@ class RegisterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            //$user->setRoles();
-            $usersRepository->save($user);
+            $user->setRoles([User::ROLE_STANDARD]);
+            $user->setPassword(
+                $userRepository->passwordEncoder->encodePassword(
+                    $user,
+                    $user->getPassword()
+                )
+            );
+            $userRepository->save($user);
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(
