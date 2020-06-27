@@ -6,12 +6,9 @@
 
 {% block body %}
     <p>
-        Welcome! Are You just a guest passing by, or You'd like to join the Realm?
+        Welcome! If You want to join the chat, please register.
     </p>
     <form action="/register" method="get">
         <input type="submit" value="I want to join!"/>
-    </form>
-    <form action="/guest" method="get">
-        <input type="submit" value="I'm just passing by."/>
     </form>
 {% endblock %}
