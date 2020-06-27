@@ -22,17 +22,21 @@
         {% else %}
             <div class="form-group row messageBoxTypeA">
         {% endif %}
-                <p>{{message.dateTime}}</p>
-                <p>{{message.username}}</p>
-                <p>{{message.content}}</p>
-                {% if adminPrivileges %}
-
-                    <form id="removeMessageForm" action="{{url('user_index')}}" method="POST">
-                        <input id="messageId" name="messageId" type="hidden" value={{ message.id }}>
-                        <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
-                    </form>
-
-                {% endif %}
+                <table border="1">
+                    <tr>
+                        <td> <p>{{message.dateTime}}</p> </td>
+                        <td> <p>{{message.username}}</p> </td>
+                        <td> <p>{{message.content}}</p> </td>
+                        {% if adminPrivileges %}
+                            <td>
+                                <form id="removeMessageForm" action="{{url('user_index')}}" method="POST">
+                                    <input id="messageId" name="messageId" type="hidden" value={{ message.id }}>
+                                    <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
+                                </form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                </table>
             </div>
     {% endfor %}
     </div>
