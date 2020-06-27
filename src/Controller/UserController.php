@@ -46,6 +46,15 @@ class UserController extends AbstractController
      */
     public function index(Request $request, UserRepository $userRepository, MessageRepository $messageRepository): Response
     {
+
+        $messageId = $request->get('messageId');
+        if($messageId)
+        {
+            $message = $messageRepository->findOneBy(['id' => $messageId]);
+            $message->setContent('---');
+            $messageRepository->save($message);
+        }
+
         $user = $userRepository->findOneBy(['email' => $this->getUser()->getUsername()]);
 
         if (!$user) {
@@ -89,31 +98,4 @@ class UserController extends AbstractController
         );
     }
 
-    /**
-     * Index action.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @Route(
-     *     "/removeMessage",
-     *     methods={"POST"},
-     *     name="user_remove_message",
-     *     defaults={},
-     *     requirements={},
-     * )
-     */
-    public function removeMessage(Request $request, MessageRepository $messageRepository): Response
-    {
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            return $this->redirectToRoute('user_index');
-        }
-
-        $messageId = $request->query->get('messageId');
-        $message = $messageRepository->findOneBy(['id' => $messageId]);
-        $message->setContent('---');
-
-        return $this->redirectToRoute('user_index');
-    }
 }

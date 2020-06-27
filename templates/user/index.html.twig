@@ -26,8 +26,9 @@
                 <p>{{message.username}}</p>
                 <p>{{message.content}}</p>
                 {% if adminPrivileges %}
-                    <form action="/user/removeMessage" method="POST">
-                        <input type="hidden" value="{{ message.id }}" id="messageId">
+
+                    <form id="removeMessageForm" action="{{url('user_index')}}" method="POST">
+                        <input id="messageId" name="messageId" type="hidden" value={{ message.id }}>
                         <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
                     </form>
 
@@ -43,6 +44,7 @@
     <div class="form-group row float-sm-left">
         <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary" />
     </div>
+        {{ form_end(form) }}
 </div>
-    {{ form_end(form) }}
+
 {% endblock %}
