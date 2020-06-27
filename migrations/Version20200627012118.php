@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200627003940 extends AbstractMigration
+final class Version20200627012118 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,7 +20,6 @@ final class Version20200627003940 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE users ($userid INT UNSIGNED AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, UNIQUE INDEX email_idx (email), PRIMARY KEY($userid)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE clans CHANGE chieftainID chieftainID INT DEFAULT NULL');
         $this->addSql('DROP INDEX userID_UNIQUE ON clansmen');
         $this->addSql('ALTER TABLE clansmen DROP FOREIGN KEY fk_clansmen_clans1');
@@ -37,15 +36,14 @@ final class Version20200627003940 extends AbstractMigration
         $this->addSql('DROP INDEX fk_realms_users1_idx ON realms');
         $this->addSql('ALTER TABLE realms CHANGE kingID kingID INT DEFAULT NULL');
         $this->addSql('ALTER TABLE tables CHANGE innID innID INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE users CHANGE roles roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\'');
         $this->addSql('DROP INDEX fk_users_credentials_idx ON usersdata');
-        $this->addSql('ALTER TABLE usersdata CHANGE userID userID INT UNSIGNED DEFAULT NULL');
+        $this->addSql('ALTER TABLE usersdata CHANGE userID userID INT DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE usersdata DROP FOREIGN KEY FK_D3437DAF5FD86D04');
-        $this->addSql('DROP TABLE users');
         $this->addSql('ALTER TABLE clans CHANGE chieftainID chieftainID INT NOT NULL');
         $this->addSql('ALTER TABLE clansmen DROP FOREIGN KEY FK_19FFCFCFF2B94192');
         $this->addSql('ALTER TABLE clansmen DROP FOREIGN KEY FK_19FFCFCF5FD86D04');
@@ -62,6 +60,7 @@ final class Version20200627003940 extends AbstractMigration
         $this->addSql('ALTER TABLE realms CHANGE kingID kingID INT NOT NULL');
         $this->addSql('CREATE INDEX fk_realms_users1_idx ON realms (kingID)');
         $this->addSql('ALTER TABLE tables CHANGE innID innID INT NOT NULL');
+        $this->addSql('ALTER TABLE users CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_bin`');
         $this->addSql('ALTER TABLE usersdata CHANGE userID userID INT NOT NULL');
         $this->addSql('CREATE INDEX fk_users_credentials_idx ON usersdata (userID)');
     }
