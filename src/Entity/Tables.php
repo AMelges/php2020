@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Tables
- * @ORM\Entity(repositoryClass="App\Repository\TablesRepository")
+ *
  * @ORM\Table(name="tables", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})}, indexes={@ORM\Index(name="fk_tables_inns1_idx", columns={"innID"})})
+ * @ORM\Entity
  */
 class Tables
 {

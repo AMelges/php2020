@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Messages
- * @ORM\Entity(repositoryClass="App\Repository\MessagesRepository")
+ *
  * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})}, indexes={@ORM\Index(name="fk_messages_users1_idx", columns={"senderID"}), @ORM\Index(name="fk_messages_tables1_idx", columns={"tableID"})})
+ * @ORM\Entity
  */
 class Messages
 {

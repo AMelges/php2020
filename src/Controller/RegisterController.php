@@ -49,7 +49,7 @@ class RegisterController extends AbstractController
             //$user->setRoles();
             $usersRepository->save($user);
 
-            return $this->redirectToRoute('realm_index');
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render(

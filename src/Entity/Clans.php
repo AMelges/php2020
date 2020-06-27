@@ -8,8 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Clans
- * @ORM\Entity(repositoryClass="App\Repository\ClansRepository")
+ *
  * @ORM\Table(name="clans", indexes={@ORM\Index(name="fk_clans_users1_idx", columns={"chieftainID"})})
+ * @ORM\Entity
  */
 class Clans
 {

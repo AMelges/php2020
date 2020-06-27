@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Realms
- * @ORM\Entity(repositoryClass="App\Repository\RealmsRepository")
+ *
  * @ORM\Table(name="realms", uniqueConstraints={@ORM\UniqueConstraint(name="kingID_UNIQUE", columns={"kingID"})}, indexes={@ORM\Index(name="fk_realms_users1_idx", columns={"kingID"})})
+ * @ORM\Entity
  */
 class Realms
 {
