@@ -5,9 +5,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Form\UsersType;
-use App\Repository\UsersRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ class RegisterController extends AbstractController
      * Register index.
      *
      * @param Request                             $request             HTTP request
-     * @param \App\Repository\UsersdataRepository $usersdataRepository Usersdata repository
+     * @param \App\Repository\UserDataRepository $usersdataRepository Usersdata repository
      *
      * @return Response HTTP response
      *
@@ -38,9 +38,9 @@ class RegisterController extends AbstractController
      *     name="register_form",
      * )
      */
-    public function index(Request $request, UsersRepository $usersRepository): Response
+    public function index(Request $request, UserRepository $usersRepository): Response
     {
-        $user = new Users();
+        $user = new User();
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 

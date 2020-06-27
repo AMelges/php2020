@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Realms
+ * Realm
  *
  * @ORM\Table(name="realms", uniqueConstraints={@ORM\UniqueConstraint(name="kingID_UNIQUE", columns={"kingID"})}, indexes={@ORM\Index(name="fk_realms_users1_idx", columns={"kingID"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RealmRepository")
  */
-class Realms
+class Realm
 {
     /**
      * @var int
@@ -36,55 +36,14 @@ class Realms
     private $cresturl;
 
     /**
-     * @var \Usersdata
+     * @var \UserData
      *
-     * @ORM\ManyToOne(targetEntity="Usersdata")
+     * @ORM\ManyToOne(targetEntity="UserData")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="kingID", referencedColumnName="ID")
      * })
      */
     private $kingid;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCresturl(): ?string
-    {
-        return $this->cresturl;
-    }
-
-    public function setCresturl(?string $cresturl): self
-    {
-        $this->cresturl = $cresturl;
-
-        return $this;
-    }
-
-    public function getKingid(): ?Usersdata
-    {
-        return $this->kingid;
-    }
-
-    public function setKingid(?Usersdata $kingid): self
-    {
-        $this->kingid = $kingid;
-
-        return $this;
-    }
 
 
 }
