@@ -45,5 +45,46 @@ class Table
      */
     private $innid;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCapacity(): ?int
+    {
+        return $this->capacity;
+    }
+
+    public function setCapacity(int $capacity): self
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getTopic(): ?string
+    {
+        return $this->topic;
+    }
+
+    public function setTopic(?string $topic): self
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    public function getInnid(): ?Inn
+    {
+        return $this->innid;
+    }
+
+    public function setInnid(?Inn $innid): self
+    {
+        $this->innid = $innid;
+
+        return $this;
+    }
+
 
 }

@@ -46,5 +46,41 @@ class Visitor
      */
     private $userid;
 
+    public function getInnid(): ?Inn
+    {
+        return $this->innid;
+    }
+
+    public function setInnid(?Inn $innid): self
+    {
+        $this->innid = $innid;
+
+        return $this;
+    }
+
+    public function getTableid(): ?Table
+    {
+        return $this->tableid;
+    }
+
+    public function setTableid(?Table $tableid): self
+    {
+        $this->tableid = $tableid;
+
+        return $this;
+    }
+
+    public function getUserid(): ?UserData
+    {
+        return $this->userid;
+    }
+
+    public function setUserid(?UserData $userid): self
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
+
 
 }

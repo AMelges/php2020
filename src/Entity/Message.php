@@ -57,5 +57,58 @@ class Message
      */
     private $senderid;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getTableid(): ?Table
+    {
+        return $this->tableid;
+    }
+
+    public function setTableid(?Table $tableid): self
+    {
+        $this->tableid = $tableid;
+
+        return $this;
+    }
+
+    public function getSenderid(): ?UserData
+    {
+        return $this->senderid;
+    }
+
+    public function setSenderid(?UserData $senderid): self
+    {
+        $this->senderid = $senderid;
+
+        return $this;
+    }
+
 
 }

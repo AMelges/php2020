@@ -45,5 +45,46 @@ class Realm
      */
     private $kingid;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCresturl(): ?string
+    {
+        return $this->cresturl;
+    }
+
+    public function setCresturl(?string $cresturl): self
+    {
+        $this->cresturl = $cresturl;
+
+        return $this;
+    }
+
+    public function getKingid(): ?UserData
+    {
+        return $this->kingid;
+    }
+
+    public function setKingid(?UserData $kingid): self
+    {
+        $this->kingid = $kingid;
+
+        return $this;
+    }
+
 
 }
