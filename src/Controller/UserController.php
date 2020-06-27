@@ -52,7 +52,7 @@ class UserController extends AbstractController
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
-        $currentUserCombinedId =  $user->getId().'_'.$user->getUsername();
+        $currentUserCombinedId = $user->getId().'_'.$user->getUsername();
         $message = new Message();
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
@@ -75,6 +75,7 @@ class UserController extends AbstractController
                     'dateTime' => $lastMessages[$i]->getDate()->format('d/m/Y'),
                     'content' => $lastMessages[$i]->getContent(),
                     'currentUser' => $currentUserCombinedId === $lastMessages[$i]->getUsername(),
+                    'id' => $lastMessages[$i]->getId(),
                 ]);
         }
 
@@ -83,7 +84,36 @@ class UserController extends AbstractController
             [
                 'form' => $form->createView(),
                 'parsedMessages' => $parsedMessages,
+                'adminPrivileges' => $this->isGranted('ROLE_ADMIN'),
             ]
         );
+    }
+
+    /**
+     * Index action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @Route(
+     *     "/removeMessage",
+     *     methods={"POST"},
+     *     name="user_remove_message",
+     *     defaults={},
+     *     requirements={},
+     * )
+     */
+    public function removeMessage(Request $request, MessageRepository $messageRepository): Response
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('user_index');
+        }
+
+        $messageId = $request->query->get('messageId');
+        $message = $messageRepository->findOneBy(['id' => $messageId]);
+        $message->setContent('---');
+
+        return $this->redirectToRoute('user_index');
     }
 }

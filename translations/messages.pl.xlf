@@ -52,7 +52,11 @@
             </trans-unit>
             <trans-unit id="action_sign_in">
                 <source>action_sign_in</source>
-                <target>Zarejestruj</target>
+                <target>Zaloguj</target>
+            </trans-unit>
+            <trans-unit id="action_remove">
+                <source>action_remove</source>
+                <target>Usuń</target>
             </trans-unit>
             <trans-unit id="info_welcome_to_the_global_chatroom">
                 <source>info_welcome_to_the_global_chatroom</source>

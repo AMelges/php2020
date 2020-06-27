@@ -19,18 +19,20 @@
     {% for message in parsedMessages %}
         {% if message.currentUser %}
             <div class="form-group row messageBoxTypeB ">
-                <p>{{message.username}}</p>
-                <p>{{message.dateTime}}</p>
-                <p>{{message.content}}</p>
-            </div>
         {% else %}
             <div class="form-group row messageBoxTypeA">
+        {% endif %}
                 <p>{{message.dateTime}}</p>
                 <p>{{message.username}}</p>
                 <p>{{message.content}}</p>
-            </div>
-        {% endif %}
+                {% if adminPrivileges %}
+                    <form action="/user/removeMessage" method="POST">
+                        <input type="hidden" value="{{ message.id }}" id="messageId">
+                        <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
+                    </form>
 
+                {% endif %}
+            </div>
     {% endfor %}
     </div>
 <div>
