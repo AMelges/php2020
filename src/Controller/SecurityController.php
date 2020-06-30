@@ -8,8 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class SecurityController
- * @package App\Controller
+ * Class SecurityController.
  */
 class SecurityController extends AbstractController
 {
@@ -19,7 +18,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-             return $this->redirectToRoute('message_index');
+            return $this->redirectToRoute('message_index');
         }
 
         // get the login error if there is one

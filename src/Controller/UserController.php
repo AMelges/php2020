@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Class MainController.
@@ -27,15 +26,12 @@ class UserController extends AbstractController
     {
         $user = $userRepository->findOneBy(['email' => $this->getUser()->getUsername()]);
 
-
-
         $currentUserCombinedId = $user->getId().'_'.$user->getUsername();
         $message = new Message();
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $message->setUsername($currentUserCombinedId);
             $message->setDate(new \DateTime());
             $messageRepository->save($message);
@@ -66,5 +62,4 @@ class UserController extends AbstractController
             ]
         );
     }
-
 }

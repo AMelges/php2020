@@ -26,6 +26,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     /**
+     * How many users should be displayed per admin page.
+     *
+     * @var int
+     */
+    const USERS_PER_PAGE_COUNT = 5;
+
+    /**
      * Role admin.
      *
      * @var string
