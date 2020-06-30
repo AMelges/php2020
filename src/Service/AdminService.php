@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * Class AdminService.
@@ -16,12 +18,13 @@ class AdminService
     /**
      * User repository.
      *
-     * @var \App\Repository\UserRepository
+     * @var UserRepository
      */
     private $userRepository;
 
     /**
      * MessageService constructor.
+     * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)
     {
@@ -29,8 +32,9 @@ class AdminService
     }
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param int $userId
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function banUser(int $userId)
     {
@@ -40,8 +44,9 @@ class AdminService
     }
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param int $userId
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function unbanUser(int $userId)
     {
@@ -51,8 +56,9 @@ class AdminService
     }
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param int $userId
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function addAdminRole(int $userId)
     {
@@ -62,8 +68,9 @@ class AdminService
     }
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param int $userId
+     * @throws OptimisticLockException
+     * @throws ORMException
      */
     public function removeAdminRole(int $userId)
     {

@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\Message;
 use App\Repository\MessageRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * Class CategoryService.
@@ -16,20 +18,25 @@ class MessageService
     /**
      * Category repository.
      *
-     * @var \App\Repository\MessageRepository
+     * @var MessageRepository
      */
     private $messageRepository;
 
     /**
      * CategoryService constructor.
      *
-     * @param \App\Repository\MessageRepository $messageRepository Message repository
+     * @param MessageRepository $messageRepository Message repository
      */
     public function __construct(MessageRepository $messageRepository)
     {
         $this->messageRepository = $messageRepository;
     }
 
+    /**
+     * @param int $messageId
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function banMessage(int $messageId)
     {
         $message = $this->messageRepository->findOneBy(['id' => $messageId]);
@@ -37,6 +44,12 @@ class MessageService
         $this->messageRepository->save($message);
     }
 
+    /**
+     * @param string $activeUser
+     * @param Message $message
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function saveMessage(string $activeUser, Message $message)
     {
         $message->setUsername($activeUser);
@@ -44,6 +57,10 @@ class MessageService
         $this->messageRepository->save($message);
     }
 
+    /**
+     * @param string $activeUser
+     * @return array
+     */
     public function getLastMessages(string $activeUser)
     {
         $lastMessages = $this->messageRepository->findBy([], ['date' => 'DESC'], Message::LAST_MESSAGES_COUNT);

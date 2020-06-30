@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class MainController.
+ * Class RegisterController.
  *
  * @Route("/register")
  */
@@ -23,13 +23,17 @@ class RegisterController extends AbstractController
 {
     private $registerService;
 
+    /**
+     * RegisterController constructor.
+     * @param RegisterService $registerService
+     */
     public function __construct(RegisterService $registerService)
     {
         $this->registerService = $registerService;
     }
 
     /**
-     * Register index.
+     * Register index action, displaying form.
      *
      * @param Request                            $request             HTTP request
      * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository

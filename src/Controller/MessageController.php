@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
- * Class MainController.
+ * Class MessageController.
  *
  * @Route("/message")
  */
@@ -31,7 +31,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * Index action.
+     * Messages index action, renders panel to see and send messages.
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -42,8 +42,6 @@ class MessageController extends AbstractController
      *     "/",
      *     methods={"GET", "POST"},
      *     name="message_index",
-     *     defaults={},
-     *     requirements={},
      * )
      */
     public function index(Request $request, UserRepository $userRepository, MessageRepository $messageRepository): Response

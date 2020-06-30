@@ -62,16 +62,26 @@ class UserData
         $this->clanid = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getLastlogin(): ?\DateTimeInterface
     {
         return $this->lastlogin;
     }
 
+    /**
+     * @param \DateTimeInterface|null $lastlogin
+     * @return $this
+     */
     public function setLastlogin(?\DateTimeInterface $lastlogin): self
     {
         $this->lastlogin = $lastlogin;
@@ -79,11 +89,18 @@ class UserData
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string|null $name
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -91,11 +108,18 @@ class UserData
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getAvatarurl(): ?string
     {
         return $this->avatarurl;
     }
 
+    /**
+     * @param string|null $avatarurl
+     * @return $this
+     */
     public function setAvatarurl(?string $avatarurl): self
     {
         $this->avatarurl = $avatarurl;
@@ -103,11 +127,18 @@ class UserData
         return $this;
     }
 
-    public function getUserid(): ?User
+    /**
+     * @return \User
+     */
+    public function getUserid(): \User
     {
         return $this->userid;
     }
 
+    /**
+     * @param User|null $userid
+     * @return $this
+     */
     public function setUserid(?User $userid): self
     {
         $this->userid = $userid;
