@@ -19,16 +19,12 @@ class MainController extends AbstractController
     /**
      * Index action.
      *
-     * @param string $name User input
-     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
      *     methods={"GET"},
      *     name="main_index",
-     *     defaults={},
-     *     requirements={},
      * )
      */
     public function index(): Response

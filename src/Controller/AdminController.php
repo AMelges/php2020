@@ -1,23 +1,17 @@
 <?php
 
-
 namespace App\Controller;
 
-
-use App\Entity\User;
-use App\Form\UsersType;
 use App\Repository\UserRepository;
 use App\Service\AdminService;
-use App\Service\RegisterService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\MessagesType;
-use App\Repository\MessageRepository;
-use App\Service\MessageService;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * Class MainController.
@@ -28,22 +22,22 @@ class AdminController extends AbstractController
 {
     private $adminService;
 
+    /**
+     * AdminController constructor.
+     * @param AdminService $adminService
+     */
     public function __construct(AdminService $adminService)
     {
         $this->adminService = $adminService;
     }
 
     /**
-     * Register index.
+     * Admin panel index.
      *
-     * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request        $request        HTTP request
+     * @param UserRepository $userRepository User repository
      *
      * @return Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
      *
      * @Route(
      *     "/panel",
@@ -51,10 +45,10 @@ class AdminController extends AbstractController
      *     name="admin_panel",
      * )
      */
-    public function index(Request $request, UserRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, UserRepository $userRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $taskRepository->queryAll(),
+            $userRepository->queryAll(),
             $request->query->getInt('page', 1),
             UserRepository::USERS_PER_PAGE_COUNT
         );
@@ -66,28 +60,24 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Register index.
+     * Admin panel ban action.
      *
-     * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
-     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      * @Route(
      *     "/ban",
      *     methods={"POST"},
      *     name="admin_panel_banUser",
      * )
      */
-    public function banUser(Request $request, UserRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function banUser(Request $request): Response
     {
         $userId = $request->get('userId');
-        if ($userId)
-        {
+        if ($userId) {
             $this->adminService->banUser($userId);
         }
 
@@ -95,16 +85,15 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Register index.
+     * Admin panel unban action.
      *
-     * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws Exception
      *
      * @Route(
      *     "/unban",
@@ -112,11 +101,10 @@ class AdminController extends AbstractController
      *     name="admin_panel_unbanUser",
      * )
      */
-    public function unbanUser(Request $request, UserRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function unbanUser(Request $request): Response
     {
         $userId = $request->get('userId');
-        if ($userId)
-        {
+        if ($userId) {
             $this->adminService->unbanUser($userId);
         }
 
@@ -124,16 +112,15 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Register index.
+     * Admin panel grant admin role action.
      *
-     * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws Exception
      *
      * @Route(
      *     "/grantAdmin",
@@ -141,11 +128,10 @@ class AdminController extends AbstractController
      *     name="admin_panel_grantAdmin",
      * )
      */
-    public function grantAdmin(Request $request, UserRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function grantAdmin(Request $request): Response
     {
         $userId = $request->get('userId');
-        if ($userId)
-        {
+        if ($userId) {
             $this->adminService->addAdminRole($userId);
         }
 
@@ -153,16 +139,15 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Register index.
+     * Admin panel revoke admin role action.
      *
-     * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws Exception
      *
      * @Route(
      *     "/revokeAdmin",
@@ -170,11 +155,10 @@ class AdminController extends AbstractController
      *     name="admin_panel_revokeAdmin",
      * )
      */
-    public function revokeAdmin(Request $request, UserRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function revokeAdmin(Request $request): Response
     {
         $userId = $request->get('userId');
-        if ($userId)
-        {
+        if ($userId) {
             $this->adminService->removeAdminRole($userId);
         }
 
