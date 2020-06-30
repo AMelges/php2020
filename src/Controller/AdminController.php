@@ -68,6 +68,7 @@ class AdminController extends AbstractController
      *
      * @throws ORMException
      * @throws OptimisticLockException
+     *
      * @Route(
      *     "/ban",
      *     methods={"POST"},

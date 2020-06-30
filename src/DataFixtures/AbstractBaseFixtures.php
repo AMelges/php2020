@@ -80,5 +80,4 @@ abstract class AbstractBaseFixtures extends Fixture
             $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
     }
-
 }

@@ -37,8 +37,8 @@ class RegisterService
         $user->setRoles([User::ROLE_STANDARD]);
         $user->setPassword(
             $this->userRepository->passwordEncoder->encodePassword(
-               $user,
-               $user->getPassword()
+                $user,
+                $user->getPassword()
             )
         );
         $this->userRepository->save($user);

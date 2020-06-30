@@ -31,7 +31,7 @@ class RegisterController extends AbstractController
     /**
      * Register index.
      *
-     * @param Request                             $request             HTTP request
+     * @param Request                            $request             HTTP request
      * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
      *
      * @return Response HTTP response
@@ -52,9 +52,9 @@ class RegisterController extends AbstractController
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->registerService->addUser($user);
+
             return $this->redirectToRoute('app_login');
         }
 

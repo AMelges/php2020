@@ -58,7 +58,8 @@ class MessageService
                     'content' => $lastMessages[$i]->getContent(),
                     'currentUser' => $activeUser === $lastMessages[$i]->getUsername(),
                     'id' => $lastMessages[$i]->getId(),
-                ]);
+                ]
+            );
         }
 
         return $parsedMessages;

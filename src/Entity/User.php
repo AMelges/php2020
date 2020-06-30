@@ -127,6 +127,7 @@ class User implements UserInterface
 
     /**
      * @param string|null $login
+     *
      * @return $this
      */
     public function setLogin(?string $login): self

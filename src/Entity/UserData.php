@@ -114,5 +114,4 @@ class UserData
 
         return $this;
     }
-
 }

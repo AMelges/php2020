@@ -37,6 +37,7 @@ class MessageController extends AbstractController
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     *
      * @Route(
      *     "/",
      *     methods={"GET", "POST"},
@@ -65,6 +66,7 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->messageService->saveMessage($activeUser, $message);
+
             return $this->redirectToRoute('message_index');
         }
 
