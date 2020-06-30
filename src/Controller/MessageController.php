@@ -10,6 +10,8 @@ use App\Form\MessagesType;
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
 use App\Service\MessageService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +25,17 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
  */
 class MessageController extends AbstractController
 {
+    /**
+     * MessageService
+     *
+     * @var MessageService
+     */
     private $messageService;
 
+    /**
+     * MessageController constructor.
+     * @param MessageService $messageService
+     */
     public function __construct(MessageService $messageService)
     {
         $this->messageService = $messageService;
@@ -33,18 +44,19 @@ class MessageController extends AbstractController
     /**
      * Messages index action, renders panel to see and send messages.
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      * @Route(
      *     "/",
      *     methods={"GET", "POST"},
      *     name="message_index",
      * )
      */
-    public function index(Request $request, UserRepository $userRepository, MessageRepository $messageRepository): Response
+    public function index(Request $request, UserRepository $userRepository): Response
     {
         $messageId = $request->get('messageId');
         if ($messageId) {

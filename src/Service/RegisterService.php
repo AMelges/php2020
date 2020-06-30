@@ -1,6 +1,6 @@
 <?php
 /**
- * Category service.
+ * RegisterService.
  */
 
 namespace App\Service;

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * AdminController.
+ */
 namespace App\Controller;
 
 use App\Repository\UserRepository;
@@ -20,6 +22,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminController extends AbstractController
 {
+    /**
+     * Service to ask for admin actions.
+     *
+     * @var AdminService
+     */
     private $adminService;
 
     /**
@@ -34,9 +41,10 @@ class AdminController extends AbstractController
     /**
      * Admin panel index.
      *
-     * @param Request        $request        HTTP request
+     * @param Request $request HTTP request
      * @param UserRepository $userRepository User repository
      *
+     * @param PaginatorInterface $paginator
      * @return Response HTTP response
      *
      * @Route(

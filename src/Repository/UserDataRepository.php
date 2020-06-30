@@ -1,4 +1,7 @@
 <?php
+/**
+ * UserDataRepository
+ */
 
 namespace App\Repository;
 
@@ -7,6 +10,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * UserDataRepository
+ *
  * @method UserData|null find($id, $lockMode = null, $lockVersion = null)
  * @method UserData|null findOneBy(array $criteria, array $orderBy = null)
  * @method UserData[]    findAll()
@@ -14,7 +19,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserDataRepository extends ServiceEntityRepository
 {
+
     /**
+     * Constructor
+     *
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)

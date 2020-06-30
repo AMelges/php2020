@@ -7,12 +7,16 @@ use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class MessagesFixtures
+ *
  * @package App\DataFixtures
  */
 class MessagesFixtures extends AbstractBaseFixtures
 {
+
     /**
-     * @inheritDoc
+     * Load data.
+     *
+     * @param ObjectManager $manager Persistence object manager
      */
     protected function loadData(ObjectManager $manager): void
     {

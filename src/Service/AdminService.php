@@ -12,6 +12,7 @@ use Doctrine\ORM\ORMException;
 
 /**
  * Class AdminService.
+ *
  */
 class AdminService
 {
@@ -24,6 +25,7 @@ class AdminService
 
     /**
      * MessageService constructor.
+     *
      * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)
@@ -32,6 +34,8 @@ class AdminService
     }
 
     /**
+     * Performs a ban on a user.
+     *
      * @param int $userId
      * @throws ORMException
      * @throws OptimisticLockException
@@ -44,6 +48,8 @@ class AdminService
     }
 
     /**
+     * Removes ban from the user.
+     *
      * @param int $userId
      * @throws ORMException
      * @throws OptimisticLockException
@@ -55,7 +61,11 @@ class AdminService
         $this->userRepository->save($user);
     }
 
+
     /**
+     * Adds admin role to the user.
+     *
+     *
      * @param int $userId
      * @throws ORMException
      * @throws OptimisticLockException
@@ -68,6 +78,8 @@ class AdminService
     }
 
     /**
+     * Removes admin role from user.
+     *
      * @param int $userId
      * @throws OptimisticLockException
      * @throws ORMException

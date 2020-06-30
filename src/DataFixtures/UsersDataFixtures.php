@@ -1,4 +1,7 @@
 <?php
+/**
+ * UsersDataFixtures
+ */
 
 namespace App\DataFixtures;
 
@@ -7,12 +10,16 @@ use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class UsersDataFixtures
+ *
  * @package App\DataFixtures
  */
 class UsersDataFixtures extends AbstractBaseFixtures
 {
+
     /**
-     * @inheritDoc
+     * Load data.
+     *
+     * @param \Doctrine\Persistence\ObjectManager $manager Persistence object manager
      */
     protected function loadData(ObjectManager $manager): void
     {

@@ -1,18 +1,21 @@
 <?php
 
+/**
+ * Message.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Messages
+ * Messages.
  *
  * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})})
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
 class Message
 {
-
     /**
      * How many messages should be displayed in chat.
      *

@@ -1,14 +1,18 @@
 <?php
 /**
- * Main controller.
+ * RegisterController.
  */
 
 namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UsersType;
+use App\Repository\UserDataRepository;
 use App\Repository\UserRepository;
 use App\Service\RegisterService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +25,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RegisterController extends AbstractController
 {
+    /**
+     * RegisterService to ask for registering actions.
+     *
+     * @var RegisterService
+     */
     private $registerService;
 
     /**
      * RegisterController constructor.
+     *
      * @param RegisterService $registerService
      */
     public function __construct(RegisterService $registerService)
@@ -35,14 +45,13 @@ class RegisterController extends AbstractController
     /**
      * Register index action, displaying form.
      *
-     * @param Request                            $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
+     * @param Request  $request HTTP request
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws Exception
      *
      * @Route(
      *     "/",

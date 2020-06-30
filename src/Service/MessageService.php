@@ -33,6 +33,8 @@ class MessageService
     }
 
     /**
+     * Apply ban on user.
+     *
      * @param int $messageId
      * @throws ORMException
      * @throws OptimisticLockException
@@ -45,6 +47,8 @@ class MessageService
     }
 
     /**
+     * Saves message status.
+     *
      * @param string $activeUser
      * @param Message $message
      * @throws ORMException
@@ -58,6 +62,8 @@ class MessageService
     }
 
     /**
+     * Gets an array of previous messages based on active user.
+     *
      * @param string $activeUser
      * @return array
      */
@@ -66,7 +72,7 @@ class MessageService
         $lastMessages = $this->messageRepository->findBy([], ['date' => 'DESC'], Message::LAST_MESSAGES_COUNT);
 
         $parsedMessages = [];
-        for ($i = count($lastMessages)-1; $i >= 0; --$i) {
+        for ($i = count($lastMessages) - 1; $i >= 0; --$i) {
             array_push(
                 $parsedMessages,
                 [
