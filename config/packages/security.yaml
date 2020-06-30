@@ -42,4 +42,5 @@ security:
         # - { path: ^/profile, roles: ROLE_STANDARD }
         - { path: ^/admin, roles: ROLE_ADMIN}
         - { path: ^/user, roles: ROLE_STANDARD}
+        - { path: ^/message, roles: ROLE_STANDARD}
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY}

@@ -20,6 +20,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     /**
+     * How many users should be displayed per admin page.
+     *
+     * @var int
+     */
+    const USERS_PER_PAGE_COUNT = 2;
+
+    /**
      * Password encoder.
      *
      * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
@@ -64,7 +71,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('user.ID', 'DESC');
+            ->orderBy('user.id', 'DESC');
     }
 
     /**
@@ -76,7 +83,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('usersdata');
+        return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 
     /**

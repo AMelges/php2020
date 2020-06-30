@@ -6,7 +6,6 @@
 namespace App\Controller;
 
 use App\Entity\Message;
-use App\Entity\User;
 use App\Form\MessagesType;
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
@@ -66,6 +65,7 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->messageService->saveMessage($activeUser, $message);
+
             return $this->redirectToRoute('message_index');
         }
 
@@ -74,7 +74,7 @@ class MessageController extends AbstractController
             [
                 'form' => $form->createView(),
                 'parsedMessages' => $this->messageService->getLastMessages($activeUser),
-                'adminPrivileges' => $this->isGranted(User::ROLE_ADMIN),
+                'adminPrivileges' => $this->isGranted('ROLE_ADMIN'),
             ]
         );
     }
