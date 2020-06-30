@@ -121,7 +121,7 @@ class User implements UserInterface
     /**
      * @var bool
      *
-     * @ORM\Column(name="isBanned", type="boolean", nullable=false)
+     * @ORM\Column(name="isBanned", type="boolean", nullable=true)
      */
     private $isbanned;
 

@@ -47,8 +47,9 @@ class MessageService
     public function getLastMessages(string $activeUser)
     {
         $lastMessages = $this->messageRepository->findBy([], ['date' => 'DESC'], Message::LAST_MESSAGES_COUNT);
+
         $parsedMessages = [];
-        for ($i = Message::LAST_MESSAGES_COUNT - 1; $i >= 0; --$i) {
+        for ($i = count($lastMessages)-1; $i >= 0; --$i) {
             array_push(
                 $parsedMessages,
                 [

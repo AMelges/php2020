@@ -10,8 +10,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})})
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
-class Messages
+class Message
 {
+
+    /**
+     * How many messages should be displayed in chat.
+     *
+     * @var int
+     */
+    const LAST_MESSAGES_COUNT = 5;
+
     /**
      * @var int
      *
