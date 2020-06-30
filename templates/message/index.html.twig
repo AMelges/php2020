@@ -13,18 +13,24 @@
         <div class="mb-3">
             {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }}
         </div>
+        <table>
+            <td>
         <center>
-            <div class="btn btn-lg btn-primary">
-                <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
+            <div>
+                <a class="btn btn-primary" href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
             </div>
         </center>
+            </td>
         {% if adminPrivileges %}
+            <td>
             <center>
-                <div class="btn btn-lg btn-primary">
-                    <a href="{{ path('admin_panel') }}">{{ 'action_openAdminPanel'| trans }}</a>
+                <div>
+                    <a  class="btn btn-primary" href="{{ path('admin_panel') }}">{{ 'action_openAdminPanel'| trans }}</a>
                 </div>
             </center>
+            </td>
         {% endif %}
+        </table>
     {% endif %}
     <div class="form-group col float-sm-left">
     {% for message in parsedMessages %}
@@ -57,7 +63,7 @@
                 {{ form_start(form, { method: 'POST', action: url('message_index') }) }}
                 {{ form_widget(form) }}
             </div>
-            <div class="btn btn-primary">
+            <div>
                 <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary"  />
             </div>
                 {{ form_end(form) }}

@@ -122,6 +122,14 @@
                 <source>action_openAdminPanel</source>
                 <target>Admin Panel</target>
             </trans-unit>
+            <trans-unit id="label_yes">
+                <source>label_yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="label_no">
+                <source>label_no</source>
+                <target>No</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

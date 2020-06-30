@@ -6,21 +6,23 @@
 
 {% block body %}
     <h1>{{ 'title_admin_panel'|trans }}</h1>
-
+<table>
+    <td>
+        <center>
+            <div >
+                <a class="btn btn-primary"  href="{{ url('app_logout') }}">{{ 'action_logout'| trans }}</a>
+            </div>
+        </center>
+    </td>
+    <td>
     <center>
-        <div class="btn btn-lg btn-primary">
-            <a href="{{ url('message_index') }}">{{ 'action_openChat'| trans }}</a>
+        <div>
+            <a class="btn btn-primary"  href="{{ url('message_index') }}">{{ 'action_openChat'| trans }}</a>
         </div>
     </center>
-
-    <center>
-        <div class="btn btn-lg btn-primary">
-            <a href="{{ url('app_logout') }}">{{ 'action_logout'| trans }}</a>
-        </div>
-    </center>
-
+    </td>
+</table>
     {% if pagination is defined and pagination.items|length %}
-
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
@@ -30,7 +32,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'user.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label_roles'|trans, 'user.roles') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_isBanned'|trans, 'user.isBanned') }}</th>
+                <th>{{ 'label_isBanned'|trans }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
@@ -45,7 +47,13 @@
                         {% endfor %}
                     </table>
                     </td>
-                    <td> {{ user.isBanned}} </td>
+                    <td>
+                        {% if user.isBanned %}
+                            {{ 'label_yes'| trans }}
+                        {% else %}
+                            {{ 'label_no'| trans }}
+                        {%  endif %}
+                    </td>
 
                     {% if user.isBanned %}
                         <td>
