@@ -64,3 +64,4 @@ class DoctrineMigrationVersions
         return $this;
     }
 }
+
