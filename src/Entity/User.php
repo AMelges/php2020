@@ -33,27 +33,6 @@ class User implements UserInterface
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
-     * Role king.
-     *
-     * @var string
-     */
-    const ROLE_KING = 'ROLE_KING';
-
-    /**
-     * Role chieftain.
-     *
-     * @var string
-     */
-    const ROLE_CHIEFTAIN = 'ROLE_CHIEFTAIN';
-
-    /**
-     * Role inkeeper.
-     *
-     * @var string
-     */
-    const ROLE_INNKEEPER = 'ROLE_INNKEEPER';
-
-    /**
      * Role standard.
      *
      * @var string

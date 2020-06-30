@@ -45,7 +45,8 @@ class UserController extends AbstractController
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $message->setUsername($currentUserCombinedId);
             $message->setDate(new \DateTime());
             $messageRepository->save($message);

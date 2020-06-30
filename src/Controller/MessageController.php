@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\User;
 use App\Form\MessagesType;
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
@@ -19,7 +20,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 /**
  * Class MainController.
  *
- * @Route("/user")
+ * @Route("/message")
  */
 class MessageController extends AbstractController
 {
@@ -40,7 +41,7 @@ class MessageController extends AbstractController
      * @Route(
      *     "/",
      *     methods={"GET", "POST"},
-     *     name="user_index",
+     *     name="message_index",
      *     defaults={},
      *     requirements={},
      * )
@@ -65,15 +66,15 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->messageService->saveMessage($activeUser, $message);
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('message_index');
         }
 
         return $this->render(
-            'user/index.html.twig',
+            'message/index.html.twig',
             [
                 'form' => $form->createView(),
                 'parsedMessages' => $this->messageService->getLastMessages($activeUser),
-                'adminPrivileges' => $this->isGranted('ROLE_ADMIN'),
+                'adminPrivileges' => $this->isGranted(User::ROLE_ADMIN),
             ]
         );
     }
