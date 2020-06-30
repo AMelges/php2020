@@ -24,7 +24,7 @@ class RegisterController extends AbstractController
      * Register index.
      *
      * @param Request                             $request             HTTP request
-     * @param \App\Repository\UserDataRepository $usersdataRepository Usersdata repository
+     * @param \App\Repository\UserDataRepository $usersdataRepository UserData repository
      *
      * @return Response HTTP response
      *

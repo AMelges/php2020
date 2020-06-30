@@ -119,6 +119,25 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="isBanned", type="boolean", nullable=false)
+     */
+    private $isbanned;
+
+    public function getIsbanned(): ?bool
+    {
+        return $this->isbanned;
+    }
+
+    public function setIsbanned(bool $isbanned): self
+    {
+        $this->isbanned = $isbanned;
+
+        return $this;
+    }
+
+    /**
      * @return string|null
      */
     public function getLogin(): ?string

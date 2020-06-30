@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class InnsFixtures extends AbstractBaseFixtures
+class UsersDataFixtures extends AbstractBaseFixtures
 {
     /**
      * @inheritDoc

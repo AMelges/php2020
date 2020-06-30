@@ -5,16 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message.
+ * Messages
  *
  * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})})
- *
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
-class Message
+class Messages
 {
-    const LAST_MESSAGES_COUNT = 5;
-
     /**
      * @var int
      *
@@ -48,13 +45,6 @@ class Message
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(?int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface

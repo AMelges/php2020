@@ -55,13 +55,6 @@ class UserData
     private $userid;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Clan", mappedBy="userid")
-     */
-    private $clanid;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -118,34 +111,6 @@ class UserData
     public function setUserid(?User $userid): self
     {
         $this->userid = $userid;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Clan[]
-     */
-    public function getClanid(): Collection
-    {
-        return $this->clanid;
-    }
-
-    public function addClanid(Clan $clanid): self
-    {
-        if (!$this->clanid->contains($clanid)) {
-            $this->clanid[] = $clanid;
-            $clanid->addUserid($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClanid(Clan $clanid): self
-    {
-        if ($this->clanid->contains($clanid)) {
-            $this->clanid->removeElement($clanid);
-            $clanid->removeUserid($this);
-        }
 
         return $this;
     }
