@@ -57,17 +57,26 @@
             </div>
     {% endfor %}
     </div>
+    {% if isBanned %}
     <center>
         <div>
-            <div>
-                {{ form_start(form, { method: 'POST', action: url('message_index') }) }}
-                {{ form_widget(form) }}
-            </div>
-            <div>
-                <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary"  />
-            </div>
-                {{ form_end(form) }}
+            {{ 'label_banInfo'| trans }}
         </div>
     </center>
+    {% else %}
+        <center>
+            <div>
+                <div>
+                    {{ form_start(form, { method: 'POST', action: url('message_index') }) }}
+                    {{ form_widget(form) }}
+                </div>
+                <div>
+                    <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary"  />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </center>
+    {% endif %}
+
 
 {% endblock %}

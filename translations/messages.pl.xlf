@@ -130,6 +130,10 @@
                 <source>label_no</source>
                 <target>Nie</target>
             </trans-unit>
+            <trans-unit id="label_banInfo">
+                <source>label_banInfo</source>
+                <target>Został nałożony na Ciebie ban i nie możesz wysyłać wiadomości. </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

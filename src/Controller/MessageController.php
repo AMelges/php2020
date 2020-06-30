@@ -65,7 +65,6 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->messageService->saveMessage($activeUser, $message);
-
             return $this->redirectToRoute('message_index');
         }
 
@@ -75,6 +74,7 @@ class MessageController extends AbstractController
                 'form' => $form->createView(),
                 'parsedMessages' => $this->messageService->getLastMessages($activeUser),
                 'adminPrivileges' => $this->isGranted('ROLE_ADMIN'),
+                'isBanned' => $user->getIsbanned(),
             ]
         );
     }
