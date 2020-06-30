@@ -29,7 +29,7 @@
                         <td> <p>{{message.content}}</p> </td>
                         {% if adminPrivileges %}
                             <td>
-                                <form id="removeMessageForm" action="{{url('user_index')}}" method="POST">
+                                <form id="removeMessageForm" action="{{url('message_index')}}" method="POST">
                                     <input id="messageId" name="messageId" type="hidden" value={{ message.id }}>
                                     <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
                                 </form>

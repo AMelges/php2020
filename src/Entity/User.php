@@ -54,7 +54,7 @@ class User implements UserInterface
      * @ORM\Column(name="login", type="text", length=255, nullable=true)
      *
      * @Assert\Length(
-     *      min = 10,
+     *      min = 5,
      *      max = 64,
      *      minMessage = "login.too_short",
      *      maxMessage = "login.too_long",
@@ -69,7 +69,7 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="text", length=255, nullable=true)
      *
      * @Assert\Length(
-     *      min = 10,
+     *      min = 5,
      *      max = 64,
      *      minMessage = "password.too_short",
      *      maxMessage = "password.too_long",

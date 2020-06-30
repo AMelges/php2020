@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UsersType;
 use App\Repository\UserRepository;
+use App\Service\RegisterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RegisterController extends AbstractController
 {
+    private $registerService;
+
+    public function __construct(RegisterService $registerService)
+    {
+        $this->registerService = $registerService;
+    }
+
     /**
      * Register index.
      *
@@ -38,7 +46,7 @@ class RegisterController extends AbstractController
      *     name="register_form",
      * )
      */
-    public function index(Request $request, UserRepository $userRepository): Response
+    public function index(Request $request): Response
     {
         $user = new User();
         $form = $this->createForm(UsersType::class, $user);
@@ -46,16 +54,7 @@ class RegisterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $user->setRoles([User::ROLE_STANDARD]);
-            // TODO: UJ Database is unable to accept bigger passwords.
-            $user->setPassword("123"
-                //$userRepository->passwordEncoder->encodePassword(
-                //   $user,
-                //   $user->getPassword()
-                //)
-            );
-            $userRepository->save($user);
-
+            $this->registerService->addUser($user);
             return $this->redirectToRoute('app_login');
         }
 

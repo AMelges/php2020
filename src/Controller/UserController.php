@@ -25,20 +25,9 @@ class UserController extends AbstractController
 
     public function index(Request $request, UserRepository $userRepository, MessageRepository $messageRepository): Response
     {
-
-        $messageId = $request->get('messageId');
-        if($messageId)
-        {
-            $message = $messageRepository->findOneBy(['id' => $messageId]);
-            $message->setContent('---');
-            $messageRepository->save($message);
-        }
-
         $user = $userRepository->findOneBy(['email' => $this->getUser()->getUsername()]);
 
-        if (!$user) {
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
-        }
+
 
         $currentUserCombinedId = $user->getId().'_'.$user->getUsername();
         $message = new Message();
