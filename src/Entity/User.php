@@ -76,9 +76,9 @@ class User implements UserInterface
      *
      * @Assert\Length(
      *      min = 10,
-     *      max = 255,
-     *      minMessage = "Your login must be at least {{ limit }} characters long",
-     *      maxMessage = "Your login cannot be longer than {{ limit }} characters",
+     *      max = 64,
+     *      minMessage = "login.too_short",
+     *      maxMessage = "login.too_long",
      *      allowEmptyString = false
      * )
      */
@@ -91,9 +91,9 @@ class User implements UserInterface
      *
      * @Assert\Length(
      *      min = 10,
-     *      max = 255,
-     *      minMessage = "Your password must be at least {{ limit }} characters long",
-     *      maxMessage = "Your password cannot be longer than {{ limit }} characters",
+     *      max = 64,
+     *      minMessage = "password.too_short",
+     *      maxMessage = "password.too_long",
      *      allowEmptyString = false
      * )
      */
@@ -105,7 +105,7 @@ class User implements UserInterface
      * @ORM\Column(name="email", type="text", length=255, nullable=true)
      *
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
+     *     message = "email.not_valid",
      *     checkMX = true
      * )
      */

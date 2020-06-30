@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="email.not_valid">
+                <source>email.not_valid</source>
+                <target>To nie jest poprawny email.</target>
+            </trans-unit>
+            <trans-unit id="password.too_short">
+                <source>password.too_short</source>
+                <target>Twoje hasło jest za krótkie. Minimalnie {{ limit }} znaków.</target>
+            </trans-unit>
+            <trans-unit id="password.too_long">
+                <source>password.too_long</source>
+                <target>Twoje hasło jest za długie. Maksymalnie {{ limit }} znaków.</target>
+            </trans-unit>
+            <trans-unit id="login.too_short">
+                <source>login.too_short</source>
+                <target>Twój login jest za krótki. Minimalnie {{ limit }} znaków.</target>
+            </trans-unit>
+            <trans-unit id="login.too_long">
+                <source>login.too_long</source>
+                <target>Twój login jest za długi. Maksymalnie {{ limit }} znaków.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
