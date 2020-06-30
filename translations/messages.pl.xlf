@@ -78,6 +78,42 @@
                 <source>label_password</source>
                 <target>Hasło:</target>
             </trans-unit>
+            <trans-unit id="title_admin_panel">
+                <source>title_admin_panel</source>
+                <target>Panel administratora:</target>
+            </trans-unit>
+            <trans-unit id="label_id">
+                <source>label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="label_roles">
+                <source>label_roles</source>
+                <target>Uprawnienia:</target>
+            </trans-unit>
+            <trans-unit id="label_isBanned">
+                <source>label_isBanned</source>
+                <target>Czy zbanowany?</target>
+            </trans-unit>
+            <trans-unit id="label_actions">
+                <source>label_actions</source>
+                <target>Dostępne akcje:</target>
+            </trans-unit>
+            <trans-unit id="action_banUser">
+                <source>action_banUser</source>
+                <target>Zbanuj użytkownika</target>
+            </trans-unit>
+            <trans-unit id="action_unbanUser">
+                <source>action_unbanUser</source>
+                <target>Odbanuj użytkownika</target>
+            </trans-unit>
+            <trans-unit id="admin_revokeAdmin">
+                <source>admin_revokeAdmin</source>
+                <target>Cofnij uprawnienia admina</target>
+            </trans-unit>
+            <trans-unit id="action_grantAdmin">
+                <source>action_grantAdmin</source>
+                <target>Przyznaj uprawnienia admina</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

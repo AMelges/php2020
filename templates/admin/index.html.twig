@@ -34,18 +34,18 @@
                     </td>
                     <td> {{ user.isBanned}} </td>
 
-                    {% if not user.isBanned %}
-                        <td>
-                            <form id="banUserForm" action="{{url('admin_panel_banUser')}}" method="POST">
-                                <input id="userId" name="userId" type="hidden" value={{ user.id}}>
-                                <input type="submit" value="{{ 'action_banUser'| trans }} " class="btn btn-primary" />
-                            </form>
-                        </td>
-                    {% else %}
+                    {% if user.isBanned %}
                         <td>
                             <form id="ubanUserForm" action="{{url('admin_panel_unbanUser')}}" method="POST">
                                 <input id="userId" name="userId" type="hidden" value={{ user.id}}>
                                 <input type="submit" value="{{ 'action_unbanUser'| trans }} " class="btn btn-primary" />
+                            </form>
+                        </td>
+                    {% else %}
+                        <td>
+                            <form id="banUserForm" action="{{url('admin_panel_banUser')}}" method="POST">
+                                <input id="userId" name="userId" type="hidden" value={{ user.id}}>
+                                <input type="submit" value="{{ 'action_banUser'| trans }} " class="btn btn-primary" />
                             </form>
                         </td>
                     {% endif %}
