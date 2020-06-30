@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Hello!
+{% endblock %}
+
+{% block body %}
+    <p>
+        {{ 'info_welcome_to_the_global_chatroom'| trans }}
+    </p>
+
+    {% if app.user %}
+        <div class="mb-3">
+            {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }},
+            <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
+        </div>
+    {% endif %}
+    <div class="form-group col float-sm-left">
+    {% for message in parsedMessages %}
+        {% if message.currentUser %}
+            <div class="form-group row messageBoxTypeB ">
+        {% else %}
+            <div class="form-group row messageBoxTypeA">
+        {% endif %}
+                <table border="1">
+                    <tr>
+                        <td> <p>{{message.dateTime}}</p> </td>
+                        <td> <p>{{message.username}}</p> </td>
+                        <td> <p>{{message.content}}</p> </td>
+                        {% if adminPrivileges %}
+                            <td>
+                                <form id="removeMessageForm" action="{{url('message_index')}}" method="POST">
+                                    <input id="messageId" name="messageId" type="hidden" value={{ message.id }}>
+                                    <input type="submit" value="{{ 'action_remove'| trans }} {{ message.id }}" class="btn btn-primary" />
+                                </form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+    {% endfor %}
+    </div>
+    <center>
+        <div>
+            <div>
+                {{ form_start(form, { method: 'POST', action: url('message_index') }) }}
+                {{ form_widget(form) }}
+            </div>
+            <div class="btn btn-primary">
+                <input type="submit" value="{{ 'action_send'| trans }}" class="btn btn-primary"  />
+            </div>
+                {{ form_end(form) }}
+        </div>
+    </center>
+
+{% endblock %}
