@@ -114,6 +114,14 @@
                 <source>action_grantAdmin</source>
                 <target>Przyznaj uprawnienia admina</target>
             </trans-unit>
+            <trans-unit id="action_openChat">
+                <source>action_openChat</source>
+                <target>Chat</target>
+            </trans-unit>
+            <trans-unit id="action_openAdminPanel">
+                <source>action_openAdminPanel</source>
+                <target>Panel Administratora</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

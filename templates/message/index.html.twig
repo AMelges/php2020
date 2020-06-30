@@ -11,9 +11,20 @@
 
     {% if app.user %}
         <div class="mb-3">
-            {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }},
-            <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
+            {{ 'info_you_are_logged_as'| trans }} {{ app.user.username }}
         </div>
+        <center>
+            <div class="btn btn-lg btn-primary">
+                <a href="{{ path('app_logout') }}">{{ 'action_logout'| trans }}</a>
+            </div>
+        </center>
+        {% if adminPrivileges %}
+            <center>
+                <div class="btn btn-lg btn-primary">
+                    <a href="{{ path('admin_panel') }}">{{ 'action_openAdminPanel'| trans }}</a>
+                </div>
+            </center>
+        {% endif %}
     {% endif %}
     <div class="form-group col float-sm-left">
     {% for message in parsedMessages %}
