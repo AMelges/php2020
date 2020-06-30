@@ -22,28 +22,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
  */
 class UserController extends AbstractController
 {
-    /**
-     * Role admin.
-     *
-     * @var string
-     */
-    const LAST_MESSAGES_COUNT = 5;
 
-    /**
-     * Index action.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @Route(
-     *     "/",
-     *     methods={"GET", "POST"},
-     *     name="user_index",
-     *     defaults={},
-     *     requirements={},
-     * )
-     */
     public function index(Request $request, UserRepository $userRepository, MessageRepository $messageRepository): Response
     {
 
@@ -74,9 +53,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        $lastMessages = $messageRepository->findBy([], ['date' => 'DESC'], UserController::LAST_MESSAGES_COUNT);
+        $lastMessages = $messageRepository->findBy([], ['date' => 'DESC'], Message::LAST_MESSAGES_COUNT);
         $parsedMessages = [];
-        for ($i = UserController::LAST_MESSAGES_COUNT - 1; $i >= 0; --$i) {
+        for ($i = Message::LAST_MESSAGES_COUNT - 1; $i >= 0; --$i) {
             array_push(
                 $parsedMessages,
                 [

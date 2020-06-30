@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message
+ * Message.
  *
  * @ORM\Table(name="messages", uniqueConstraints={@ORM\UniqueConstraint(name="ID_UNIQUE", columns={"ID"})})
  *
@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Message
 {
+    const LAST_MESSAGES_COUNT = 5;
+
     /**
      * @var int
      *
@@ -79,7 +81,7 @@ class Message
         return $this;
     }
 
-    public function getUsername():  ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -90,5 +92,4 @@ class Message
 
         return $this;
     }
-
 }
